@@ -24,6 +24,12 @@ open class DummyController {
     open fun admin(): Response {
         return Response("Todo ok. Admins")
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_admin','ROLE_Manager')")
+    @GetMapping("/manager-area")
+    open fun managerArea(): Response {
+        return Response("Acceso permitido para Admin y Manager")
+    }
 }
 
 data class Response(val message: String)
